@@ -3,10 +3,11 @@ function navigateTo(url) {
   history.pushState(null, null, url);
   renderContent(url);
 }
+
 // HTML templates
 function getHomePageTemplate() {
   return `
-   <div id="content" >
+    <div id="content" >
       <img src="./src/assets/Endava.png" alt="summer">
       <div class="events flex items-center justify-center flex-wrap">
       </div>
@@ -17,7 +18,7 @@ function getHomePageTemplate() {
 function getOrdersPageTemplate() {
   return `
     <div id="content">
-    <h1 class="text-2xl mb-4 mt-8 text-center">Purchased Tickets</h1>
+      <h1 class="text-2xl mb-4 mt-8 text-center">Purchased Tickets</h1>
     </div>
   `;
 }
@@ -56,54 +57,52 @@ function setupInitialPage() {
   renderContent(initialUrl);
 }
 
-function renderHomePage() {
-  const mainContentDiv = document.querySelector('.main-content-component');
-  mainContentDiv.innerHTML = getHomePageTemplate();
-  // Sample hardcoded event data
-  const eventData = {
-    id: 1,
-    description: 'Sample event description.',
-    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-    name: 'Sample Event',
-    ticketCategories: [
-      { id: 1, description: 'General Admission' },
-      { id: 2, description: 'VIP' },
-    ],
-  };
-  // Create the event card element
-  const eventCard = document.createElement('div');
-  eventCard.classList.add('event-card'); 
-  // Create the event content markup
-  const contentMarkup = `
-    <header>
-      <h2 class="event-title text-2xl font-bold">${eventData.name}</h2>
-    </header>
-    <div class="content">
-      <img src="${eventData.img}" alt="${eventData.name}" class="event-image w-full height-200 rounded object-cover mb-4">
-      <p class="description text-gray-700">${eventData.description}</p>
-    </div>
-  `;
-
-  eventCard.innerHTML = contentMarkup;
-  const eventsContainer = document.querySelector('.events');
-  // Append the event card to the events container
-  eventsContainer.appendChild(eventCard);
+async function fetchTicketEvents() {
+  const response = await fetch('https://localhost:7108/api/Event/GetAll');
+  const data = await response.json();
+  return data;
 }
 
-function renderOrdersPage(categories) {
+function renderHomePage(eventsData) {
+  const mainContentDiv = document.querySelector('.main-content-component');
+  mainContentDiv.innerHTML = getHomePageTemplate();
+
+  const eventsContainer = document.querySelector('.events');
+
+  eventsData.forEach(eventData => {
+    const eventCard = document.createElement('div');
+    eventCard.classList.add('event-card');
+
+    const contentMarkup = `
+      <header>
+        <h2 class="event-title text-2xl font-bold">${eventData.eventName}</h2>
+      </header>
+      <div class="content">
+        <p class="description text-gray-700">${eventData.eventDescription}</p>
+        <button class="buy-button bg-blue-500 text-white px-4 py-2 rounded mt-4">Buy Tickets</button>
+      </div>
+    `;
+
+    eventCard.innerHTML = contentMarkup;
+    eventsContainer.appendChild(eventCard);
+  });
+}
+
+function renderOrdersPage() {
   const mainContentDiv = document.querySelector('.main-content-component');
   mainContentDiv.innerHTML = getOrdersPageTemplate();
 }
 
 // Render content based on URL
-function renderContent(url) {
+async function renderContent(url) {
   const mainContentDiv = document.querySelector('.main-content-component');
   mainContentDiv.innerHTML = '';
 
   if (url === '/') {
-    renderHomePage();
+    const eventsData = await fetchTicketEvents();
+    renderHomePage(eventsData);
   } else if (url === '/orders') {
-    renderOrdersPage()
+    renderOrdersPage();
   }
 }
 
