@@ -1,3 +1,4 @@
+//import {kebabCase, addPurchase} from  './src/utils';
 // Navigate to a specific URL
 function navigateTo(url) {
   history.pushState(null, null, url);
@@ -63,6 +64,32 @@ async function fetchTicketEvents() {
   return data;
 }
 
+// 
+// const createEvent = (eventData) => {
+//   const title = kebabCase(eventData.eventType.name);
+//   const eventElement = createEventElement(eventData,title);
+//   return eventElement;
+// };
+
+// const createEventElement = (eventData, title) =>{
+//   const {eventID, eventDescription, eventName, startDate, endDate } = eventData;
+//   const eventDiv = document.createElement('div');
+//   const eventWrapperClasses = useStyle('eventWrapper');
+//   const actionWrapperClasses = useStyle('actionWrapper');
+//   const quantityClasses = useStyle('quantity');
+//   const inputClasses = useStyle('input');
+//   const quantityActionsClasses = useStyle('quantityActions');
+//   const increaseBtnClasses = useStyle('increaseBtn');
+//   const decreaseBtnClasses = useStyle('decreaseBtn');
+//   const addToCartBtnClasses = useStyle('addToCartBtn');
+
+
+
+// eventDiv.classList.add(...eventWrapperClasses);
+// }
+
+
+
 function renderHomePage(eventsData) {
   const mainContentDiv = document.querySelector('.main-content-component');
   mainContentDiv.innerHTML = getHomePageTemplate();
@@ -74,19 +101,26 @@ function renderHomePage(eventsData) {
     eventCard.classList.add('event-card');
 
     const contentMarkup = `
-      <header>
-        <h2 class="event-title text-2xl font-bold">${eventData.eventName}</h2>
-      </header>
-      <div class="content">
-        <p class="description text-gray-700">${eventData.eventDescription}</p>
-        <button class="buy-button bg-blue-500 text-white px-4 py-2 rounded mt-4">Buy Tickets</button>
-      </div>
+    <header>
+    <h2 class="event-title text-2xl font-bold">${eventData.eventName}</h2>
+  </header>
+  <div class="content">
+    <div class="info-column">
+      <p class="description text-gray-700">${eventData.eventDescription}</p>
+      <button class="buy-button bg-blue-500 text-white px-4 py-2 rounded mt-4">Buy Tickets</button>
+    </div>
+  </div>
     `;
 
     eventCard.innerHTML = contentMarkup;
     eventsContainer.appendChild(eventCard);
   });
 }
+
+
+
+
+
 
 function renderOrdersPage() {
   const mainContentDiv = document.querySelector('.main-content-component');
@@ -105,6 +139,7 @@ async function renderContent(url) {
     renderOrdersPage();
   }
 }
+
 
 // Call the setup functions
 setupNavigationEvents();
