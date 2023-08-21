@@ -6,14 +6,18 @@
 		<link rel="stylesheet" href="./src/styles.css" />
 		<link rel="stylesheet" href="./style.css" />
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&amp;display=swap" rel="stylesheet">
+		<link href="https://fontawesome.com/icons/circle?f=classic&s=solid&an=flip" rel="stylesheet">
 		<title>Ticket Management</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 	<body>
 		<header id="page-header">
+	
 			<nav class="container mx-auto px-4 py-2 flex items-center justify-between">
 				<div>
 					<a href="/" aria-label="Go to home page" class="text-white font-bold text-2xl">
-						<img class="logo" src="./src/assets/logo.png" alt="app logo">
+						
 					</a>
 				</div>
 				<div class="md:block">
@@ -34,6 +38,7 @@
 						</li>
 					</ul>
 				</div>
+				
 				<div class="w-16 flex justify-end pr-2">
 					<div class="md:hidden">
 						<button
@@ -60,12 +65,25 @@
 							class="block px-4 py-2 hover:bg-gray-600"
 							>Orders</a
 						>
+						
 					</li>
 				</ul>
 			</div>
+
 		</header>
+
+		<div id="loader"
+		class="opacity=100 fixed top-2/4 left-1/2 -translate-x-1/2 translate-y-1/2 ">
+	
+		<i class="fa fa-regular fa-circle fa-flip"></i>
+			
+	</div>
+	
 		<main class="main-content-component">
+			<div id="toast-container" class="toast-container"></div>
 		</main>
-		<script type="module" src="./main.js"></script>
+		<script type="module" src="./main.js">
+			
+		</script>
 	</body>
 </html>

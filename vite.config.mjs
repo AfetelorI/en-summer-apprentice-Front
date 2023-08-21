@@ -8,3 +8,12 @@ export default {
     },
   },
 };
+// server: {
+//   proxy: {
+//     "/api/Event/GetAll" {
+//       target: "http://localhost:7108",
+//       changeOrigin = true,
+//       secure = false
+//     }
+//   }
+// }
