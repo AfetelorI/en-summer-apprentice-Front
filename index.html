@@ -8,6 +8,8 @@
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&amp;display=swap" rel="stylesheet">
 		<link href="https://fontawesome.com/icons/circle?f=classic&s=solid&an=flip" rel="stylesheet">
 		<title>Ticket Management</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 	<body>
 		<header id="page-header">
@@ -36,6 +38,7 @@
 						</li>
 					</ul>
 				</div>
+				
 				<div class="w-16 flex justify-end pr-2">
 					<div class="md:hidden">
 						<button
@@ -75,8 +78,9 @@
 		<i class="fa fa-regular fa-circle fa-flip"></i>
 			
 	</div>
+	
 		<main class="main-content-component">
-			
+			<div id="toast-container" class="toast-container"></div>
 		</main>
 		<script type="module" src="./main.js">
 			

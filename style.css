@@ -238,3 +238,49 @@ margin-right: 370px;
 .btn:hover {
   background-color: #ef9b09;
 }
+/*///////////////////////////////////////////////*/
+
+.filter-btn {
+  background-color: #eac718; 
+  border: 1px solid #ef9b09; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease-in-out; 
+}
+
+
+.filter-btn:hover {
+  background-color: #ef9b09;
+}
+
+.toast-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.toast {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast-success {
+  background-color: #28a745;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
